@@ -21,7 +21,7 @@ export default function Home() {
 
   const handleLogout = async () => {
     await supabase.auth.signOut()
-    router.push('/login')
+    router.push('/') // Fixed: goes back to homepage after logout
   }
 
   if (loading) return <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">Loading...</div>
@@ -50,17 +50,15 @@ export default function Home() {
           <button 
             onClick={() => router.push('/receipts')}
             className="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded transition-colors"
-            
           >
-            🧾 Upload Payment Receipt 
+            🧾 Upload Payment Receipt
           </button>
 
           <button 
             onClick={() => router.push('/announcements')}
             className="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded transition-colors"
-            
           >
-            📢 View Announcements 
+            📢 View Announcements
           </button>
 
         </div>
@@ -74,7 +72,7 @@ export default function Home() {
           </button>
         ) : (
           <button 
-            onClick={() => router.push('/login')}
+            onClick={() => router.push('/auth/login')} // Fixed: points to the correct Supabase auth route
             className="mt-8 bg-white text-gray-900 font-bold py-2 px-4 rounded w-full hover:bg-gray-200"
           >
             Log In
